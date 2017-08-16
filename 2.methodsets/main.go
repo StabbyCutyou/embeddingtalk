@@ -33,7 +33,6 @@ func main() {
 	s := S{E: E{name: "alex"}}
 	//g := G{T: pkg.T{name: "davida"}} // Cannot access unexported fields across packages!
 	g := G{T: pkg.T{}}
-
 	s.SayHi()
 	g.SayHi()
 

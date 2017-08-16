@@ -45,6 +45,6 @@ func main() {
 	uvj, _ := json.MarshalIndent(uv, "", "\t")
 	utj, _ := json.MarshalIndent(utv, "", "\t")
 
-	fmt.Println(string(uvj)) // Without the tag, the marshaller will ignore the User data, since
+	fmt.Println(string(uvj)) // Without the tag, the marshaller will ignore the User data
 	fmt.Println(string(utj)) // Once you explicitly set the tag, the marshaller will include the embedded type!
 }

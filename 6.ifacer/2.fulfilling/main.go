@@ -18,7 +18,7 @@ func (b *NoiseBox) Bark() {
 	fmt.Println("Bark!")
 }
 
-// Yelp will yelp
+// Yelp will yelp, but not on a pointer - thus, the interface is not fulfilled!
 func (b NoiseBox) Yelp() {
 	fmt.Println("Yipe yipe yipe!")
 }

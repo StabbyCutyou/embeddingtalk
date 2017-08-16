@@ -2,70 +2,72 @@ package main
 
 import "fmt"
 
-type Greeter interface {
-	Hello()
-	Goodbye()
+// PatientDog knows how to behave
+type PatientDog interface {
+	Sit()
+	Stay()
 }
 
-type CasualGreeter interface {
-	Hello()
-	Seeya()
+// HyperDog can only behave for a short time
+type HyperDog interface {
+	Sit()
+	Speak()
 }
 
-type Goodbyeer interface {
-	Goodbye()
-	Seeya()
+// SuperCorgi is the ultimate in Corgi
+type SuperCorgi struct {
+	PatientDog
+	HyperDog
 }
 
-type GoodDog struct {
-	Greeter
-	CasualGreeter
-}
-
+// PembrokeBehaviors defines a Pembrokes
 type PembrokeBehaviors struct{}
 
-func (p *PembrokeBehaviors) Hello() {
-	fmt.Println("I'm H!")
-}
-func (p *PembrokeBehaviors) Goodbye() {
-	fmt.Println("Goodbye from H!")
+// Sit will sit
+func (p *PembrokeBehaviors) Sit() {
+	fmt.Println("Ok, Pembroke is Sitting!")
 }
 
+// Stay will stay
+func (p *PembrokeBehaviors) Stay() {
+	fmt.Println("Ok, Pembroke is Staying!")
+}
+
+// CardiganBehaviors defines a Cardigan
 type CardiganBehaviors struct{}
 
-func (g *CardiganBehaviors) Hello() {
-	fmt.Println("I'm G!")
-}
-func (g *CardiganBehaviors) Seeya() {
-	fmt.Println("Seeya from G!")
+// Sit will sit
+func (g *CardiganBehaviors) Sit() {
+	fmt.Println("I'm a Cardigan!!")
 }
 
-func DoGreeter(g Greeter) {
-	g.Hello()
-	g.Goodbye()
+// Speak will speak
+func (g *CardiganBehaviors) Speak() {
+	fmt.Println("Seeya from a Cardigan!!")
 }
 
-func DoCasualGreeter(cg CasualGreeter) {
-	cg.Hello()
-	cg.Seeya()
+// DoPatient runs through the Patient behavior list
+func DoPatient(p PatientDog) {
+	p.Sit()
+	p.Stay()
 }
 
-func DoGoodbyeer(gb Goodbyeer) {
-	gb.Goodbye()
-	gb.Seeya()
+// DoHyper runs through the Greeter behavior list
+func DoHyper(h HyperDog) {
+	h.Sit()
+	h.Speak()
 }
 
 func main() {
-	gd := &GoodDog{Greeter: &PembrokeBehaviors{}, CasualGreeter: &CardiganBehaviors{}}
-	// gd.Hello() // Compiler Error: ambiguous selector gd.Hello
+	corg := &SuperCorgi{PatientDog: &PembrokeBehaviors{}, HyperDog: &CardiganBehaviors{}}
+	//corg.Sit() // Compiler Error: ambiguous selector corg.Sit
 
 	// But also! These next two won't work either!
 
-	// DoGreeter(gd) // This actually has 2 compiler errors!
-	// 1: GoodDog.Hello is ambiguous. This is due to promotion, which means Hello does not make it into the MethodSet!
-	// 2: cannot use *GoodDog as type Greeter in argument: *GoodDog doesn't implement Greeter (missing Hello method)
+	//DoPatient(corg) // This actually has 2 compiler errors, one of which cascades into the other!
+	// 1: SuperCorgi.Sit is ambiguous. Due to promotion rules, Hello does not make it into the MethodSet
+	// 2: cannot use *SuperCorgi as type PatientDog: *SuperCorgi does not implement PatientDog (missing Sit method)
 
-	// This has the same two errors as before, but for CasualGreeter instead
-	// DoCasualGreeter(gd)
-	DoGoodbyeer(gd) // This is fine, because it avoids the ambiguous selector!
+	// DoHyper(corg) // This has the same two errors as before, but for HyperDog instead
+	fmt.Println(corg)
 }

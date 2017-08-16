@@ -4,15 +4,11 @@ import "fmt"
 
 // Treat is a tasty lamb treat for dogs to enjoy
 type Treat struct {
-	name        string
+	size        int64
 	SourcedFrom string
 }
 
-// SayHi will say hellos
-func (t Treat) SayHi() {
-	fmt.Println("Hi, i'm" + t.name)
-}
-
-func (t Treat) hello() {
-	fmt.Println("Hey")
+// Description will say hellos
+func (t *Treat) Description() {
+	fmt.Printf("Hi, i'm a size %d Lamb Treat\n", t.size)
 }
