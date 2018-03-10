@@ -33,8 +33,8 @@ type SuperCorgi struct {
 func main() {
 	sc := SuperCorgi{Pembroke: Pembroke{Name: "Bark Ruffalo"}, Cardigan: Cardigan{Name: "Bark Hamill"}}
 
-	// sc.Hello() 				// Compiler Error: ambiguous selector sc1.Hello
-	// fmt.Println(sc.Name) 	// Compiler Error: ambiguous selector sc2.Name
+	// sc.Hello() 				// Compiler Error: ambiguous selector sc.Hello
+	// fmt.Println(sc.Name) 	// Compiler Error: ambiguous selector sc.Name
 
 	fmt.Println(sc)
 }

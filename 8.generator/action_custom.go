@@ -1,5 +1,7 @@
 package main
 
+// Code generated but intended to be editted by the user
+
 // ActionCustom lets you define a set of cutom methods and fields on action, which won't get overwritten!
 type ActionCustom struct {
 	// Define fields that come from third party libs, etc, here

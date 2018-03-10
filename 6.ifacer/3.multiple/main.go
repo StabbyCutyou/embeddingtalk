@@ -65,7 +65,7 @@ func main() {
 	// But also! These next two won't work either!
 
 	//DoPatient(corg) // This actually has 2 compiler errors, one of which cascades into the other!
-	// 1: SuperCorgi.Sit is ambiguous. Due to promotion rules, Hello does not make it into the MethodSet
+	// 1: SuperCorgi.Sit is ambiguous. Due to promotion rules, Sit does not make it into the MethodSet
 	// 2: cannot use *SuperCorgi as type PatientDog: *SuperCorgi does not implement PatientDog (missing Sit method)
 
 	// DoHyper(corg) // This has the same two errors as before, but for HyperDog instead
